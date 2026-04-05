@@ -31,6 +31,31 @@ Its value lies in transforming a fragmented compliance process into a structured
 - **Submission layer**  
   A final automation process uploads the generated TXT files into the Turismatica portal day by day.
 
+## System flow
+
+The system operates as a chained multi-agent workflow:
+
+1. A human trigger starts the process.
+2. The automation enters Beddy and reaches the booking tableau.
+3. A reading layer identifies the relevant bookings and extracts booking details.
+4. Reservation data is stored in a structured JSON layer.
+5. A movement builder transforms booking data into daily movement files.
+6. Movement data is stored again in structured JSON form.
+7. A code-mapping layer converts required fields into the canonical reporting values.
+8. A TXT generator creates submission-ready TXT files in the exact format required by the Turismatica portal.
+9. The generated TXT files are stored and passed to the uploader agent.
+10. The uploader agent submits them day by day into the Turismatica portal.
+11. A final human validation step confirms the result.
+
+## Architecture diagram
+
+![Turismatica Generator Architecture](./Turismatica_Generator.jpg)
+
+## Operational proof
+
+This system was designed as a real hospitality reporting workflow, not as a conceptual prototype.  
+It processes booking data through multiple transformation layers, generates canonical TXT outputs, and supports structured submission into the real reporting portal with final human validation.
+
 ## Why it matters
 
 Tourism reporting workflows are often operationally fragile because they depend on manual extraction, file preparation, format compliance, and repetitive submission steps.  
