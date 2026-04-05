@@ -51,6 +51,75 @@ The system operates as a chained multi-agent workflow:
 
 ![Turismatica Generator Architecture](./Turismatica_Generator.jpg)
 
+## Input / Output
+
+**Input**
+- Monthly reservation data extracted from the Beddy management system
+- Booking details required for daily movement generation
+
+**Intermediate outputs**
+- Structured booking JSON files
+- Structured movement JSON files
+- Canonical code-mapped reporting values
+
+**Final output**
+- Submission-ready TXT files in the exact format required by the Turismatica portal
+- Day-by-day upload workflow with final human validation
+
+## Component roles
+
+- **Tableau Reader Agent**  
+  Reads the booking tableau and identifies the relevant reservations.
+
+- **Booking Detail Extraction Agent**  
+  Extracts the booking-level data required for reporting.
+
+- **Booking JSON Storage Layer**  
+  Preserves structured reservation data before downstream transformations.
+
+- **Movement Builder Agent**  
+  Converts extracted reservations into daily movement records.
+
+- **Movement JSON Storage Layer**  
+  Stores intermediate movement-level data in structured form.
+
+- **Code Mapping Layer**  
+  Converts raw booking and movement values into canonical reporting codes.
+
+- **TXT Generator Agent**  
+  Generates submission-ready TXT files in the exact reporting format.
+
+- **TXT Storage Layer**  
+  Preserves the generated TXT outputs before submission.
+
+- **Turismatica Uploader Agent**  
+  Uploads the generated TXT files into the Turismatica portal.
+
+- **Human Validation**  
+  Confirms the final result at the end of the workflow.
+
+## Why this architecture exists
+
+This system is structured as a multi-layer workflow because the reporting process is not a single action, but a sequence of dependent transformations.
+
+The separation between extraction, JSON storage, movement generation, code mapping, TXT generation, and upload creates a more stable architecture with clearer validation points.  
+It also makes the system easier to debug, evolve, and supervise over time.
+
+Instead of relying on one monolithic automation, the workflow preserves intermediate structured states and isolates the most fragile logic into dedicated layers.
+
+## Real-world constraints
+
+This project was designed around real operational constraints, including:
+
+- external management-system extraction
+- canonical TXT formatting requirements
+- coded reporting fields such as nationality mappings
+- day-by-day submission structure
+- reliability across multiple transformation steps
+- final human validation before closing the process
+
+Because of these constraints, the architecture prioritizes structure, traceability, and modularity over simplistic one-step automation.
+
 ## Operational proof
 
 This system was designed as a real hospitality reporting workflow, not as a conceptual prototype.  
