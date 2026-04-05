@@ -98,6 +98,14 @@ The system operates as a chained multi-agent workflow:
 - **Human Validation**  
   Confirms the final result at the end of the workflow.
 
+## Project structure
+
+The repository is organized as a multi-layer operational system, with separate modules for extraction, transformation, storage, code mapping, TXT generation, and portal upload.
+
+The structure reflects the workflow described above: intermediate states are preserved in dedicated storage layers, while core transformation steps remain separated into distinct agents and processing modules.
+
+![Turismatica Generator Project Structure](./Turismatica_Generator_Structure.png)
+
 ## Why this architecture exists
 
 This system is structured as a multi-layer workflow because the reporting process is not a single action, but a sequence of dependent transformations.
