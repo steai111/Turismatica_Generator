@@ -98,7 +98,7 @@ The system operates as a chained multi-agent workflow:
 - **Human Validation**  
   Confirms the final result at the end of the workflow.
 
-## Project structure
+## Repository structure snapshot
 
 The repository is organized as a multi-layer operational system, with separate modules for extraction, transformation, storage, code mapping, TXT generation, and portal upload.
 
